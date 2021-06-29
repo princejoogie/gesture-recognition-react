@@ -4,10 +4,10 @@ import * as fp from "fingerpose";
 import Webcam from "react-webcam";
 import "./App.css";
 import { drawHand } from "./utilities";
-import peace from "./peace.png";
-import thumbs_up from "./thumbs_up.png";
-import okay from "./okay.png";
-import raise from "./raise.png";
+import peace from "./assets/peace.png";
+import thumbs_up from "./assets/thumbs_up.png";
+import okay from "./assets/okay.png";
+import raise from "./assets/raise.png";
 import {
   _okGesture as okGesture,
   _peaceGesture as peaceGesture,
@@ -29,7 +29,6 @@ function App() {
   const [emoji, setEmoji] = useState(null);
 
   const detect = async (net) => {
-    console.log({ net });
     try {
       if (
         typeof webcamRef.current !== "undefined" &&
@@ -47,9 +46,7 @@ function App() {
         canvasRef.current.width = videoWidth;
         canvasRef.current.height = videoHeight;
 
-        console.log("init hand");
         const hand = await net.estimateHands(video);
-        console.log("prediction here");
 
         if (hand.length > 0) {
           const GE = new fp.GestureEstimator([
