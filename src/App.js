@@ -56,7 +56,6 @@ function App() {
             raiseGesture,
           ]);
           const gesture = await GE.estimate(hand[0].landmarks, 5);
-          console.log(gesture);
           if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
             const confidence = gesture.gestures.map(
               (prediction) => prediction.confidence
@@ -77,7 +76,7 @@ function App() {
         const ctx = canvasRef.current.getContext("2d");
         drawHand(hand, ctx);
       } else {
-        console.log("not ready");
+        console.log("Model Not ready");
       }
     } catch (err) {
       console.log(err);
